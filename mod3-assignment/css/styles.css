@@ -1,1 +1,26 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 
+body {
+	font-size: 16px;
+	color: black;
+	background-color: white;
+	font-family: 'Oxygen', sans-serif;
+}
+
+#header-nav {
+	background-color: #707b7c;
+	border: 3px solid black;
+	border-radius: 0;
+}
+
+.navbar-brand {
+	padding-bottom: 25px;
+}
+
+.navbar-brand h1 {
+	color: black;
+}
