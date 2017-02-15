@@ -10,6 +10,12 @@ body {
 	background-color: white;
 	font-family: 'Oxygen', sans-serif;
 }
+.section {
+  background-color: #707b7c;
+  border: 1px solid black;
+  margin: 30px;
+  padding: 20px;
+}
 
 #header-nav {
 	background-color: #707b7c;
@@ -20,7 +26,7 @@ body {
 .navbar-brand h1 { /* Restaurant name */
   font-family: 'Ubuntu', sans-serif;;
   color: black;
-  font-size: 1.5em;
+  font-size: 2em;
   text-transform: uppercase;
   font-weight: bold;
   text-shadow: 1px 1px 1px #222;
@@ -45,7 +51,6 @@ body {
   margin-top: 10px;
 }
 #nav-list a {
-  color: #951C49;
   text-align: center;
 }
 #nav-list a:hover {
@@ -54,4 +59,10 @@ body {
 #nav-list a span {
   font-size: 1.8em;
 }
-.
+.navbar-header button.navbar-toggle, .navbar-header .icon-bar {
+  border: 1px solid black;
+}
+.navbar-header button.navbar-toggle {
+  clear: both;
+  margin-top: -30px;
+}
