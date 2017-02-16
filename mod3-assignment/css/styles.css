@@ -49,12 +49,16 @@ body {
 
 #nav-list {
   margin-top: 10px;
+  color: black;
+  background-color: white;
 }
 #nav-list a {
   text-align: center;
+  color: black;
+  background-color: white;
 }
 #nav-list a:hover {
-  background: #E7E7E7;
+  color: black;
 }
 #nav-list a span {
   font-size: 1.8em;
