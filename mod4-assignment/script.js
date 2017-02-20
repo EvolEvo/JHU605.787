@@ -63,6 +63,22 @@ for (var i = 0; i < names.length; i++) {
   } else {
     helloSpeaker.speak(names[i]);
   }
-}
+  namesMessage = names.map(mapNames(names));
 
 })();
+
+function mapNames(names) {
+  for (var i = 0; i < names.length; i++) {
+
+  var firstLetter = names[i].charAt(0).toLowerCase();
+
+  
+  if (firstLetter === 'j') {
+    byeSpeaker.speak(names[i]);
+  } else {
+    helloSpeaker.speak(names[i]);
+  }
+}
+
+}
+
