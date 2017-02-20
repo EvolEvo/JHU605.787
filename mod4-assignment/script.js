@@ -29,6 +29,23 @@ WARNING!!! WARNING!!!
 
 */
 
+function mapNames() {
+  for (var i = 0; i < names.length; i++) {
+
+  var firstLetter = names[i].charAt(0).toLowerCase();
+
+  
+  if (firstLetter === 'j') {
+    byeSpeaker.speak(names[i]);
+  } else {
+    helloSpeaker.speak(names[i]);
+  }
+}
+
+}
+
+
+
 // STEP 1: (NOTHING TO DO. ALREADY DONE FOR YOU)
 // Wrap the entire contents of script.js inside of an IIFE
 // See Lecture 52, part 2
@@ -63,22 +80,7 @@ for (var i = 0; i < names.length; i++) {
   } else {
     helloSpeaker.speak(names[i]);
   }
-  namesMessage = names.map(mapNames(names));
+  namesMessage = names.map(mapNames);
 
 })();
-
-function mapNames(names) {
-  for (var i = 0; i < names.length; i++) {
-
-  var firstLetter = names[i].charAt(0).toLowerCase();
-
-  
-  if (firstLetter === 'j') {
-    byeSpeaker.speak(names[i]);
-  } else {
-    helloSpeaker.speak(names[i]);
-  }
-}
-
-}
 
