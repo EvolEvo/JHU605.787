@@ -29,20 +29,6 @@ WARNING!!! WARNING!!!
 
 */
 
-function mapNames() {
-  for (var i = 0; i < names.length; i++) {
-
-  var firstLetter = names[i].charAt(0).toLowerCase();
-
-  
-  if (firstLetter === 'j') {
-    byeSpeaker.speak(names[i]);
-  } else {
-    helloSpeaker.speak(names[i]);
-  }
-}
-
-}
 
 
 
@@ -80,7 +66,26 @@ for (var i = 0; i < names.length; i++) {
   } else {
     helloSpeaker.speak(names[i]);
   }
-  namesMessage = names.map(mapNames);
+   
+}
+
+var namesMessage = names.map(mapNames);
+
+for (var i = 0; i < namesMessage.length; i++) {
+  console.log(namesMessage[i]);
+  }
+
+  function mapNames(x) {
+   firstLetter = x.charAt(0).toLowerCase();
+
+  
+    if (firstLetter === 'j') {
+     return byeSpeaker.speakSimple(x);
+    } else {
+     return helloSpeaker.speakSimple(x);
+   }
+  }
+
 
 })();
 
