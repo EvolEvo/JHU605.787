@@ -71,8 +71,8 @@ for (var i = 0; i < names.length; i++) {
 
 var namesMessage = names.map(mapNames);
 
-for (var i = 0; i < namesMessage.length; i++) {
-  console.log(namesMessage[i]);
+for (var message in namesMessage) {
+  console.log(namesMessage[message]);
   }
 
  
@@ -91,12 +91,12 @@ for (var i = 0; i < namesMessage.length; i++) {
   }, []);
   
 
-    for (var i = 0; i < reducedHello.length; i++) {
-        console.log(reducedHello[i]);
+    for (var greeting in reducedHello) {
+        console.log(reducedHello[greeting]);
     }
 
-    for (var i = 0; i < reducedGoodbye.length; i++) {
-      console.log(reducedGoodbye[i]);
+    for (var greeting in reducedGoodbye) {
+      console.log(reducedGoodbye[greeting]);
     }
 
   function mapNames(x) {
