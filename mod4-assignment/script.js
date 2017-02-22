@@ -75,6 +75,30 @@ for (var i = 0; i < namesMessage.length; i++) {
   console.log(namesMessage[i]);
   }
 
+ 
+  var reducedHello = namesMessage.reduce(function(hello, message){
+    if (message[0].charAt(0) === "H"){
+      hello.push(message);
+    }
+    return hello;
+  }, []);
+  
+  var reducedGoodbye = namesMessage.reduce(function(bye, message){
+    if (message[0].charAt(0) === "G"){
+      bye.push(message);
+    }
+    return bye;
+  }, []);
+  
+
+    for (var i = 0; i < reducedHello.length; i++) {
+        console.log(reducedHello[i]);
+    }
+
+    for (var i = 0; i < reducedGoodbye.length; i++) {
+      console.log(reducedGoodbye[i]);
+    }
+
   function mapNames(x) {
    firstLetter = x.charAt(0).toLowerCase();
 
