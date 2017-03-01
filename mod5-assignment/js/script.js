@@ -22,6 +22,7 @@ var menuItemsUrl =
   "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
+var aboutUrl = "snippets/about.html";
 
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
@@ -58,6 +59,11 @@ var switchMenuToActive = function () {
     classes += " active";
     document.querySelector("#navMenuButton").className = classes;
   }
+
+  /*classes = document.querySelector("#navAboutButton").className;
+  if (classes.indexOf("active") === -1) {
+    classes += " active";
+    document.querySelector("#navAboutButton").className = classes;*/
 };
 
 // On page load (before images or CSS)
@@ -138,6 +144,12 @@ function chooseRandomCategory (categories) {
   return categories[randomArrayIndex];
 }
 
+//Generate random number between 1 and 5
+function generateRandomNumber(){
+  return Math.floor((Math.random() * 5) + 1);
+
+}
+
 
 // Load the menu categories view
 dc.loadMenuCategories = function () {
@@ -146,6 +158,14 @@ dc.loadMenuCategories = function () {
     allCategoriesUrl,
     buildAndShowCategoriesHTML);
 };
+
+// Load the About view
+dc.loadAbout = function(){
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    aboutUrl,
+   buildAndShowAboutHTML, false);
+}; 
 
 
 // Load the menu items view
@@ -156,6 +176,43 @@ dc.loadMenuItems = function (categoryShort) {
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
 };
+
+/*
+function buildAndShowAbout () {
+
+  $ajaxUtils.sendGetRequest(
+    about, 
+    function (about) {
+     // var fullHtml;
+     // for (var i = 0; i < 4; i++) {
+        var nums[];
+        for (var j = 1; j < 6; j++){
+          nums[j] = generateRandomNumber;
+        }
+        nums.sort();
+        nums.forEach(function(element) {
+          var html = aboutUrl;
+          if (element == 0) {
+            var star = "fa fa-star-o";
+            var name = "0-star rating";
+          }
+          else {
+            var star = "fa fa-star";
+            var name = element + "-star rating";
+          }
+          html = insertProperty(html, "star" + indexOf(element), star);
+          //fullHtml += html;
+          html = insertProperty(html, "name" + j, name);
+         // fullHtml += html;
+        });
+      //}
+
+      insertHtml("#main-content", fullHtml);
+
+    }, false);      
+
+}
+*/
 
 
 // Builds HTML for the categories page based on the data
