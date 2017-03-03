@@ -146,7 +146,8 @@ function chooseRandomCategory (categories) {
 
 //Generate random number between 1 and 5
 function generateRandomNumber(){
-  return Math.floor((Math.random() * 5) + 1);
+  var rando = Math.floor((Math.random() * 5) + 1);
+  return rando;
 
 }
 
@@ -164,7 +165,22 @@ dc.loadAbout = function(){
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
     aboutUrl,
-   buildAndShowAboutHTML, false);
+   function (aboutUrl) {
+      var num = generateRandomNumber();
+      for (var i = 1; i <= 5; i++) {
+        if (i <= num) {
+          aboutUrl = insertProperty(aboutUrl, "star" + i, "fa fa-star");
+        }
+        else {
+          aboutUrl = insertProperty(aboutUrl, "star" + i, "fa fa-star-o");
+        }
+
+
+      }
+      aboutUrl = insertProperty(aboutUrl, "num", num);
+      insertHtml("#main-content", aboutUrl);
+
+    }, false);
 }; 
 
 
@@ -181,31 +197,20 @@ dc.loadMenuItems = function (categoryShort) {
 function buildAndShowAbout () {
 
   $ajaxUtils.sendGetRequest(
-    about, 
-    function (about) {
-     // var fullHtml;
-     // for (var i = 0; i < 4; i++) {
-        var nums[];
-        for (var j = 1; j < 6; j++){
-          nums[j] = generateRandomNumber;
+    aboutUrl, 
+    function (aboutUrl) {
+      var fullHtml;
+
+      var num = generateRandomNumber();
+      for (var i = 1; i <= 5; i++) {
+        if (i <= num) {
+          fullHtml = insertProperty(html, "star" + i; "fa fa-star");
         }
-        nums.sort();
-        nums.forEach(function(element) {
-          var html = aboutUrl;
-          if (element == 0) {
-            var star = "fa fa-star-o";
-            var name = "0-star rating";
-          }
-          else {
-            var star = "fa fa-star";
-            var name = element + "-star rating";
-          }
-          html = insertProperty(html, "star" + indexOf(element), star);
-          //fullHtml += html;
-          html = insertProperty(html, "name" + j, name);
-         // fullHtml += html;
-        });
-      //}
+        else {
+          fullHtml = insertProperty(html, "star" + i; "fa fa-star-o");
+        }
+
+      }
 
       insertHtml("#main-content", fullHtml);
 
