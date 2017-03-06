@@ -3,9 +3,13 @@
 
 angular.module('LunchCheck', [])
 
-.controller('LunchCheckController', function ($scope) {
+.controller('LunchCheckController', LunchCheckController);
+
+LunchCheckController.$inject = ['$scope'];
+
+function LunchCheckController($scope) {
 	$scope.menu = "";
-	$scope.response = "This is the message";
+	$scope.response = "";
 	$scope.button = "";
 
 	$scope.displayMessage = function() {
@@ -17,7 +21,7 @@ angular.module('LunchCheck', [])
 	function determineResult(string) {
 		var result = "";
 		var items = string.split(",");
-		if (items.length< 1) {
+		if (items[0] == "") {
 			result = "Please enter data first";
 		}
 		else if (items.length >= 1 && items.length <= 3){
@@ -28,5 +32,5 @@ angular.module('LunchCheck', [])
 		}
 		return result;
 	}
-}); 
+}
 })();
