@@ -9,12 +9,12 @@ LunchCheckController.$inject = ['$scope'];
 
 function LunchCheckController($scope) {
 	$scope.menu = "";
-	$scope.response = "";
+	$scope.message = "";
 	$scope.button = "";
 
 	$scope.displayMessage = function() {
 		var resultMessage = determineResult($scope.menu);
-		$scope.response = resultMessage;
+		$scope.message = resultMessage;
 
 	};
 
@@ -26,9 +26,13 @@ function LunchCheckController($scope) {
 		}
 		else if (items.length >= 1 && items.length <= 3){
 			result = "Enjoy!";
+			$scope.color = "green";
+			$scope.border = "green-border";
 		}
 		else {
 			result = "Too much!";
+			$scope.color = "red";
+			$scope.border = "red-border";
 		}
 		return result;
 	}
