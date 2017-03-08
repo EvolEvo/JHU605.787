@@ -177,10 +177,6 @@ body {
 .category-tile:hover {
   box-shadow: 0 1px 5px 1px #cccccc;
 }
-.review-tile:hover {
-  box-shadow: 0 1px 5px 1px #cccccc;
-}
-
 
 #menu-categories-title + div {
   margin-bottom: 50px;
