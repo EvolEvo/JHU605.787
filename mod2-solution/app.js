@@ -20,6 +20,9 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
 
 	var alreadyBought = this;
 	alreadyBought.items = ShoppingListCheckOffService.getAlreadyBought();
+	alreadyBought.calculateTotal = function() {
+		ShoppingListCheckOffService.calculateTotal();
+	}
 }
 
 function ShoppingListCheckOffService() {
@@ -49,7 +52,7 @@ function ShoppingListCheckOffService() {
 
 	};
 
-	service.calculateTotal = function(item) {
+	service.calculateTotal = function() {
 		return item.pricePerItem * item.quantity;
 	}
 
