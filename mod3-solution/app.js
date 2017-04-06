@@ -1,78 +1,91 @@
 (function () {
-	'use strict';
+'use strict';
 
-	angular.module('NarrowItDownApp', [])
-	.controller('NarrowItDownController', NarrowItDownController)
-	.service('MenuSearchService', MenuSearchService)
-	.constant('ApiBasePath', 'https://davids-restaurant.herokuapp.com')
-	.directive('foundItemsList', FoundItemsDirective);
+angular.module('NarrowItDownApp', [])
+.controller('NarrowItDownController', NarrowItDownController)
+.service('MenuSearchService', MenuSearchService)
+.constant('ApiBasePath', "http://davids-restaurant.herokuapp.com")
+.directive('foundItems', FoundItemsDirective);
 
-	function FoundItemsDirective() {
-		var ddo = {
-			templateUrl: 'foundItemsList.html',
-			scope: {
-				items: '<',
-				onRemove: '&'
-			}, 
-			controller: FoundItemsDirectiveController,
-			controllerAs: 'list',
-			bindToController: true
-		};
-		return ddo;
-	}
+function FoundItemsDirective() {
+  var ddo = {
+    templateUrl: 'foundItems.html',
+    scope: {
+      found: '<',
+      onRemove: '&'
+    },
+    controller: FoundItemsDirectiveController,
+    controllerAs: 'list',
+    bindToController: true
+  };
 
-	function FoundItemsDirectiveController() {
-		var list = this;
-	}
+  return ddo;
+}
 
-	NarrowItDownController.$inject = ['MenuSearchService'];
-	function NarrowItDownController(MenuSearchService) {
+function FoundItemsDirectiveController() {
+  var list = this;
 
-		var list = this;
-		list.getItems = function(searchTerm) {
+  list.isEmpty = function () {
+    if (list.found.length == 0 ) {
+      return true;
+    }
 
-			var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
+    return false;
+  };
+}
 
-			promise.then(function(response) {
-				list.items = response;
-			})
-			.catch(function(error) {
-				console.log("Something went terribly wrong!");
-			});
-		};
+NarrowItDownController.$inject = ['MenuSearchService'];
+function NarrowItDownController(MenuSearchService) {
+  var list = this;
 
-			list.removeItem = function (index) {
-				MenuSearchService.removeItem(index);
-			};
-		
-	}
+  list.getMatched = function(searchTerm) {
+    var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
 
-	MenuSearchService.$inject = ['$http', 'ApiBasePath'];
-	function MenuSearchService($http, ApiBasePath) {
-		var service = this;
-		service.foundItems = [];
-		service.getMatchedMenuItems = function (searchTerm) {
+    promise.then(function (response) {
+      list.found = response;
+    })
+    .catch(function (error) {
+      console.log("Something terrible happened!");
+    })
+  };
 
-			return $http({
-				method: "GET",
-				url: (ApiBasePath + "/menu_items.json")
-			}).then(function (result) {
-		    
-		    var menuItems = result.data.menu_items;
+  list.removeItem = function (itemIndex) {
+    MenuSearchService.removeItem(itemIndex);
+  };
+}
 
-		    for(var i = 0; i < menuItems.length; i++) {
-		    	if(menuItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1) {
-		    		service.foundItems.push(menuItems[i]);
-		    	}
-		    }
+MenuSearchService.$inject = ['$http', 'ApiBasePath'];
+function MenuSearchService($http, ApiBasePath) {
+  var service = this;
+  var foundItems = [];
 
-		    return service.foundItems;
-			});
-		};
+  service.getMatchedMenuItems = function (searchTerm) {
+    foundItems = [];
 
-		service.removeItem = function(item) {
-			service.foundItems.splice(item, 1);
-                };
-	}
+    return $http({
+      method: "GET",
+      url: (ApiBasePath + "/menu_items.json")
+    }).then(function (result) {
+      var menuItems =  result.data.menu_items;
+      
+
+      
+      for (var i = 0; i < menuItems.length; i++ ) {
+	  	if (menuItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1) {
+  	   	 foundItems.push(menuItems[i]);
+  	  	}
+      }
+      
+
+      return foundItems;
+  //  }).catch(function (error) {
+    //  console.log("getMatchedMenuItems() - Error Occurred");
+    });  
+  };
+
+  service.removeItem = function (itemIndex) {
+    foundItems.splice(itemIndex, 1);
+  };
+}
 
 })();
