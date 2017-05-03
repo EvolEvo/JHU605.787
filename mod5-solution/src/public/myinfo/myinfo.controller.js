@@ -10,6 +10,6 @@
 
     ctrl.menuItem = menuItem;
     ctrl.registration = registration;
-    ctrl.basePath = ApiPath;
+    ctrl.ApiPath = ApiPath;
   }
 })();
