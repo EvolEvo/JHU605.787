@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h1>My Info</h1>
+  <div ng-hide="myInfoCtrl.menuItem">
+    Not Signed Up Yet. <a ui-sref="public.signup">Sign Up Now!</a>
+  </div>
+  <div ng-show="myInfoCtrl.menuItem">
+
+
+  {{myInfoCtrl.registration.firstName}}
+  {{myInfoCtrl.registration.lastName}}
+  <br>
+  {{myInfoCtrl.registration.email}}
+  <br>
+  {{myInfoCtrl.registration.phone}}
+  <br> <br><br>
+  Favorite Item:
+  <br>
+  <div>
+  <img ng-src="{{myInfoCtrl.basePath}}/images/{{myInfoCtrl.menuItem.short_name}}.jpg">
+  </div>
+  {{myInfoCtrl.menuItem.short_name}} <br>
+  {{myInfoCtrl.menuItem.name}} <br>
+  {{myInfoCtrl.menuItem.description}} <br>
+ 
